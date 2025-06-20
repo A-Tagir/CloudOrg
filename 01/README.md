@@ -33,5 +33,17 @@
 
 * Видим, что VM в подсети Public и имеет внешний IP и доступ в интернет.
 
+* Теперь добавляем  route table и виртуалку с внутренним IP:
 
+[terraform src](https://github.com/A-Tagir/CloudOrg/tree/main/01/src)
 
+* Применяем:
+
+![private_apply](https://github.com/A-Tagir/CloudOrg/blob/main/01/CloudOrg01_private_apply.png)
+
+* Проверяем:
+
+![private_ok](https://github.com/A-Tagir/CloudOrg/blob/main/01/CloudOrg01_private_ok.png)
+
+* Видим, что к машине private можно подключиться (технология jump host) и она имеет доступ в интернет.
+  
