@@ -15,7 +15,7 @@
 * Создать route table. Добавить статический маршрут, направляющий весь исходящий трафик private сети в NAT-инстанс.
 * Создать в этой приватной подсети виртуалку с внутренним IP, подключиться к ней через виртуалку, созданную ранее, и убедиться, что есть доступ к интернету.
 ```
-* Создаю VPC, Subnet с названием Public и Private, NAT-инстансе, VM с названием Public c Public IP.
+* Создаю VPC, Subnet с названием public и private, NAT-инстанс, VM с названием public c public IP.
 
 [terraform src](https://github.com/A-Tagir/CloudOrg/tree/main/01/src)
 
