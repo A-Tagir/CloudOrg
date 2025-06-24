@@ -6,12 +6,12 @@ output "vm_public_external_ip_address" {
           ]
  description = "vm public external ip"
 }
-#
-#output "vm_db_external_ip_address" {
-#  value = [
-#            yandex_compute_instance.platform1.name,
-#            yandex_compute_instance.platform1.network_interface.0.nat_ip_address,
-#            yandex_compute_instance.platform1.fqdn
-#          ]
-# description = "vm db external ip"
-#}
+
+output "vm_private_internal_ip_address" {
+  value = [
+            yandex_compute_instance.private.name,
+            yandex_compute_instance.private.network_interface[0].ip_address,
+            yandex_compute_instance.private.fqdn
+          ]
+ description = "vm private internal ip"
+}

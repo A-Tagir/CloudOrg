@@ -28,7 +28,8 @@ platform_id  = var.vm_nat_platform_id
   }
   network_interface {
     subnet_id = yandex_vpc_subnet.public.id
-#    nat = var.vm_web_nat
+    ip_address = "192.168.10.254"
+    nat = var.vm_nat_nat
   }
 
   metadata = {
@@ -44,7 +45,7 @@ resource "yandex_vpc_subnet" "private" {
   zone           = var.cloud_zone
   network_id     = yandex_vpc_network.cloud-netology.id
   v4_cidr_blocks = var.private_cidr
-#  route_table_id = yandex_vpc_route_table.rt.id
+  route_table_id = yandex_vpc_route_table.rt-nat.id
 }
 
 data "yandex_compute_image" "ubuntu" {
@@ -82,37 +83,43 @@ resource "yandex_compute_instance" "public" {
 
 }
 
+resource "yandex_vpc_route_table" "rt-nat" {
+  network_id = yandex_vpc_network.cloud-netology.id
 
+  static_route {
+    destination_prefix = "0.0.0.0/0"
+    next_hop_address   = "192.168.10.254"
+  }
+}
 
-#resource "yandex_compute_instance" "platform1" {
-#  name         = local.name_db
-#  platform_id  = var.vm_db_platform_id
-#  zone         = var.vm_db_zone
+resource "yandex_compute_instance" "private" {
+  name         = var.vm_private_name
+  platform_id  = var.vm_private_platform_id
 
-#  resources {
-#    cores = var.vms_resources.db.cores
-#    memory = var.vms_resources.db.memory
-#    core_fraction = var.vms_resources.db.core_fraction
-#  }
-#  boot_disk {
-#    initialize_params {
-#      image_id = data.yandex_compute_image.ubuntu.image_id
-#    }
-#  }
-#  scheduling_policy {
-#    preemptible = var.vm_db_preemptible
-#  }
-#  network_interface {
-#    subnet_id = yandex_vpc_subnet.develop_b.id
-#    nat = var.vm_db_nat
+  resources {
 
-#  }
+    cores = var.vms_resources.private.cores
+    memory = var.vms_resources.private.memory
+    core_fraction = var.vms_resources.private.core_fraction
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = var.vm_private_preemptible
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.private.id
+    nat = var.vm_private_nat
 
-#    metadata = {
-#    serial-port-enable = var.metadata_resources.serial-port-enable
-#    ssh-keys           = "ubuntu:${var.metadata_resources.ssh-keys}"
-#  }
+  }
 
-#}
+  metadata = {
+    serial-port-enable = var.metadata_resources.serial-port-enable
+    ssh-keys           = "ubuntu:${var.metadata_resources.ssh-keys}"
+  }
 
+} 
 

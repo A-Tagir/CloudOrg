@@ -94,39 +94,21 @@ variable "vm_nat_platform_id" {
   description  = "yandex platform type"
 }
 
-#variable "vm_web_serial-port-enable" {
-#  type        = number
-#  default     = 1
-#  description  = "VM serial port"
-#}
-
-variable "vm_public_preemptible" {
+variable "vm_lamp_preemptible" {
   type        = bool
   default     = true
   description  = "VM preemtible or not"
 }
 
-variable "vm_private_preemptible" {
+variable "vm_lamp_nat" {
   type        = bool
-  default     = true
-  description  = "VM preemtible or not"
-}
-
-variable "vm_nat_preemptible" {
-  type        = bool
-  default     = true
-  description  = "VM preemtible or not"
-}
-
-variable "vm_nat_nat" {
-  type        = bool
-  default     = true
+  default     = false
   description  = "VM nat or not"
 }
 
 variable "vm_public_nat" {
   type        = bool
-  default     = false
+  default     = true
   description  = "VM nat"
 }
 
@@ -145,11 +127,3 @@ variable "metadata_resources" {
    type = map(any)
    description = "VM metadata map"
 }
-
-###ssh vars
-
-#variable "vms_ssh_root_key" {
-#  type        = string
-#  default     = "<your_ssh_ed25519_key>"
-#  description = "ssh-keygen -t ed25519"
-#}
