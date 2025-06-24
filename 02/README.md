@@ -20,4 +20,30 @@
 4. (дополнительно)* Создать Application Load Balancer с использованием Instance group и проверкой состояния.
 
 ```
-*
+* Создаю необходимые сети:
+
+[networks.tf](https://github.com/A-Tagir/CloudOrg/blob/main/02/src/network.tf)
+
+* создаю бакет и помещаю картинку:
+
+[bucket.tf](https://github.com/A-Tagir/CloudOrg/blob/main/02/src/bucket.tf)
+
+* Создаю сервисный аккаунт, инстанс группу согласно заданию и сетевой балансировщик. 
+  В процессе работы выяснилось, что удаление инстанс группы не происходит и 
+  пришлось добавить в зависимости сервисный аккаунт. После этого все четко.
+  В инстансах внешнего IP не предусмотрел. Включил для отладки, но потом удалил:
+
+[main.tf](https://github.com/A-Tagir/CloudOrg/blob/main/02/src/main.tf)
+
+* Весь код здесь:
+
+[src](https://github.com/A-Tagir/CloudOrg/tree/main/02/src)
+
+* Применяем:
+```
+yc iam create-token
+
+
+```
+
+![]()
