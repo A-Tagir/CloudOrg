@@ -42,8 +42,43 @@
 * Применяем:
 ```
 yc iam create-token
-
+terraform apply -var "token="
 
 ```
+![apply_ok](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_apply_ok.png)
 
-![]()
+* Видим что созданы 3 VM:
+
+![VMs_OK](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_vms_ok.png)
+
+* Видим что создан сетевой балансировщик, IP адрес его, также есть в output:
+
+![NetworkBalancer](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_nbalancer_ok.png)
+
+* Заходим на http://http://51.250.32.197/ и видим по ID, что запрос направлен на VM3 из группы:
+
+![VM3_response](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_vm3_response.png)
+
+* Обновляем и видим, что теперь запрос направлен на VM1 из группы:
+
+![VM1_response](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_vm1_response.png)
+
+* Останавливаем VM1 и VM3:
+
+![vms_stopped](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_vms_stopped.png)
+
+* обновляем и видим, что сервер отдает картинку с VM2:
+
+![VM2_response](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_vm2_response.png)
+
+* Также я замечаю, что остановленные машины запустились сами через некоторое время.
+
+* Удаляю ресурсы:
+
+![destroy_ok](https://github.com/A-Tagir/CloudOrg/blob/main/02/CloudOrg02_tf_destroy_ok.png)
+
+* Успешно удалились.
+  
+  
+
+
