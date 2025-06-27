@@ -22,13 +22,15 @@
 
 * Создаю ключ kms symmetric key для шифрования бакета, создаю роль для шифрования бакета. Зашифрованный бакет не может быть
   публичным, поэтому делаем его private и после создания получаем ссылку (срок действия 30 дней) через консоль.
-  (Это можно было бы сделать также через terraform и aws cli). Эту ссылку помещаем в шаблон инстанса.
+  (Это можно было бы сделать также через terraform + aws cli). Эту ссылку помещаем в шаблон инстанса.
+
+![access_link](https://github.com/A-Tagir/CloudOrg/blob/main/03/CloudOrg03_access_link.png)
 
 [key.tf](https://github.com/A-Tagir/CloudOrg/blob/main/03/src/key.tf)
 
 * Весь проект:
 
-[src]()
+[src](https://github.com/A-Tagir/CloudOrg/tree/main/03/src)
 
 * Применяем:
 ```
@@ -36,3 +38,17 @@ yc iam create-token
 terraform apply -var "token="
 
 ```
+
+![encrypted_bucket](https://github.com/A-Tagir/CloudOrg/blob/main/03/CloudOrg03_Encrypted_bucket.png)
+
+* Видим, что создался ключ
+  
+![key_id](https://github.com/A-Tagir/CloudOrg/blob/main/03/CloudOrg03_key_id.png)
+
+* Пробуем получить доступ к изображению и видим, что оно недоступно:
+
+![no_access](https://github.com/A-Tagir/CloudOrg/blob/main/03/CloudOrg03_no_access.png)
+
+* Но если зайти в приложение через адрес балансировщика, то изображение есть, потом-то там созданная ссылка на зашифрованный объект:
+
+![access_ok](https://github.com/A-Tagir/CloudOrg/blob/main/03/CloudOrg03_access_ok.png)
