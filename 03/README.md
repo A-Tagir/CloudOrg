@@ -52,3 +52,5 @@ terraform apply -var "token="
 * Но если зайти в приложение через адрес балансировщика, то изображение есть, потом-то там созданная ссылка на зашифрованный объект:
 
 ![access_ok](https://github.com/A-Tagir/CloudOrg/blob/main/03/CloudOrg03_access_ok.png)
+
+
