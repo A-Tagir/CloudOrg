@@ -1,10 +1,3 @@
-vms_resources = {
-      lamp = {
-           cores = 2
-           memory = 1
-           core_fraction = 5
-        }
-}
 
 metadata_resources = {
   serial-port-enable = 0

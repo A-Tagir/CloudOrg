@@ -15,9 +15,21 @@ variable "cloud_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-variable "public_cidr" {
+variable "public1_cidr" {
   type        = list(string)
-  default     = ["192.168.10.0/24"]
+  default     = ["10.0.20.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+
+variable "public2_cidr" {
+  type        = list(string)
+  default     = ["10.0.21.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+
+variable "public3_cidr" {
+  type        = list(string)
+  default     = ["10.0.22.0/24"]
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
 
@@ -45,53 +57,12 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
-variable "public_net_name" {
-  type        = string
-  default     = "cloud-net-public"
-  description = "VPC network & subnet name"
-}
-
-variable "private_net_name" {
-  type        = string
-  default     = "cloud-net-private"
-  description = "VPC network & subnet name"
-}
-
-variable "vm_family" {
-  type        = string
-  default     = "ubuntu-2204-lts"
-  description  = "VM os family"
-}
 
 variable "token" {
   type        = string
   default     = ""
   sensitive   = true
   description = "IAM token"
-}
-
-
-variable "vm_lamp_preemptible" {
-  type        = bool
-  default     = true
-  description  = "VM preemtible or not"
-}
-
-variable "vm_lamp_nat" {
-  type        = bool
-  default     = false
-  description  = "VM nat or not"
-}
-
-
-variable "vms_resources" {
-   type = map(map(number))
-   description = "VM resources map"
-}
-
-variable "metadata_resources" {
-   type = map(any)
-   description = "VM metadata map"
 }
 
 variable "db_password" {
@@ -113,6 +84,29 @@ variable "private2_zone" {
 
 variable "private3_zone" {
   type        = string
-  default     = "ru-central1-c"
+  default     = "ru-central1-d"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+
+variable "public1_zone" {
+  type        = string
+  default     = "ru-central1-a"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+
+variable "public2_zone" {
+  type        = string
+  default     = "ru-central1-b"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+
+variable "public3_zone" {
+  type        = string
+  default     = "ru-central1-d"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+
+variable "metadata_resources" {
+   type = map(any)
+   description = "VM metadata map"
 }
